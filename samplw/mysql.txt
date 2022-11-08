@@ -1,0 +1,48 @@
+create table employees(
+   id int,
+   empname varchar(30),
+   empdes varchar(30),
+   salary int
+);
+insert into employees values(1,"vishnu","cloud",350000),
+(2,"kumar","cloud",450000),
+(3,"vaibhav","software",450000),
+(4,"sulla","softwate",650000),
+(5,"samith","frontend",950000),
+(6,"rohit","backend",550000),
+(7,"rishi","backedn",730000);
+
+describe employees;
+select * from employees where salary >= 660000;
+-- update employees set empdes = "backend" where empname="rishi"; 
+select * from employees where empname like 'r%i';
+select * from employees where empname like 'v%';
+select * from employees where empname like '%a';
+select * from employees where empname like '__h%';
+select * from employees where salary between 500000 and 700000;
+select * from employees where empname <> "vishnu";
+select * from employees where empname in ("sulla","samith");
+select * from employees limit 5;
+delete from employees where id = 7;
+SET SQL_SAFE_UPDATES = 0;
+select * from employees;
+select distinct empname from employees;
+select * from employees order by salary,empname;
+select * from employees where salary between 450000 and 950000 order by salary,empname;
+select * from employees order by(case empname
+when "vishnu" then 1
+when "sulla" then 2
+else 100 end
+);
+
+select sum(salary) sum from employees where empdes = "cloud";
+select empname,max(salary) maxsalary from employees where empdes = "cloud";
+select count(*) count from employees where empdes = "cloud";
+select ucase(empname) uppercase from employees where empdes = "cloud"; 
+select lower(empname) lowercase from employees where empdes = "cloud";
+select reverse(empname) reversename from employees where empdes = "cloud";
+select concat("rs.",format(salary,0)) empname from employees where empdes = "cloud";
+select date(now());
+select curdate();
+select date_format(curdate(),"%d/%m/%y");
+select empname,empdes from employees group by empdes having count(id)>=2;
